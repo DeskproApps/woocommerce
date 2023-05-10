@@ -1,0 +1,87 @@
+{
+  "titleKeyName": "Name",
+  "idKey": "id",
+  "main": [
+    [
+      {
+        "name": "date_created",
+        "label": "Date",
+        "type": "date"
+      },
+      {
+        "name": "status",
+        "label": "Status",
+        "type": "label"
+      }
+    ]
+  ],
+  "view": [
+    [
+      {
+        "name": "items",
+        "label": "Item",
+        "type": "item"
+      }
+    ],
+    [
+      {
+        "name": "subtotal",
+        "label": "Subtotal",
+        "type": "currency",
+        "format": "horizontal"
+      }
+    ],
+    [
+      {
+        "name": "shipping_total",
+        "label": "Shiping",
+        "type": "currency",
+        "format": "horizontal"
+      }
+    ],
+    [
+      {
+        "name": "total_tax",
+        "label": "Taxes",
+        "type": "currency",
+        "format": "horizontal"
+      }
+    ],
+    [
+      {
+        "name": "total",
+        "label": "Total Value",
+        "type": "currency",
+        "format": "horizontal"
+      }
+    ],
+    [
+      {
+        "name": "status",
+        "label": "Order Status",
+        "type": "label"
+      }
+    ],
+    [
+      {
+        "name": "billing",
+        "label": "Shipping address",
+        "type": "address"
+      }
+    ],
+    [
+      {
+        "name": "billing",
+        "label": "Billing address",
+        "type": "address"
+      }
+    ],
+    [
+      {
+        "name": "date_created",
+        "label": "Created",
+        "type": "date"
+      }
+    ]
+  ]
+}

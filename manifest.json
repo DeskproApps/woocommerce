@@ -1,26 +1,50 @@
 {
-  "name": "@deskpro-apps/my-app",
-  "title": "My App",
-  "description": "My Deskpro app",
+  "name": "@deskpro-apps/woocommerce",
+  "title": "WooCommerce",
+  "description": "Take control of your orders with the WooCommerce app",
   "version": "0.0.1",
   "scope": "agent",
   "isSingleInstall": false,
   "hasDevMode": true,
-  "targets": [{ "target": "ticket_sidebar", "entrypoint": "index.html" }],
+  "targets": [
+    {
+      "target": "user_sidebar",
+      "entrypoint": "index.html"
+    }
+  ],
   "settings": {
-    "example": {
-      "title": "Example Setting",
-      "description": "Example backend only setting",
+    "consumer_key": {
+      "title": "Consumer Key",
+      "description": "Consumer key can be obtained by following our setup guide",
       "type": "string",
-      "isRequired": false,
-      "isBackendOnly": true
+      "isRequired": true,
+      "isBackendOnly": true,
+      "order": 10
+    },
+    "consumer_secret": {
+      "title": "Consumer Secret",
+      "description": "Consumer secret can be obtained by following our setup guide",
+      "type": "string",
+      "isRequired": true,
+      "isBackendOnly": true,
+      "order": 20
+    },
+    "store_url": {
+      "title": "Store URL",
+      "description": "Your WooCommerce store URL, example: https://store.com",
+      "type": "string",
+      "isRequired": true,
+      "isBackendOnly": false,
+      "order": 30
     }
   },
   "proxy": {
     "whitelist": [
       {
-        "url": "https://jsonplaceholder.typicode.com/.*",
-        "methods": ["GET"],
+        "url": "https://(.*)/wp-json/wc/v3/.*",
+        "methods": [
+          "GET"
+        ],
         "timeout": 20
       }
     ]

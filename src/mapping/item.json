@@ -1,0 +1,33 @@
+{
+  "view": [
+    [
+      {
+        "name": "name",
+        "label": "Name",
+        "type": "text"
+      },
+      {
+        "name": "date",
+        "label": "Date",
+        "type": "Date"
+      },
+      {
+        "name": "total",
+        "label": "Price",
+        "type": "currency"
+      }
+    ],
+    [
+      {
+        "name": "description",
+        "label": "Description",
+        "type": "text"
+      },
+      {
+        "name": "quantity",
+        "label": "Qty",
+        "type": "text"
+      }
+    ]
+  ]
+}

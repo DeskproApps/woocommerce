@@ -1,0 +1,50 @@
+{
+  "titleKeyName": "Name",
+  "idKey": "id",
+  "main": [
+    [
+      {
+        "name": "email",
+        "label": "Email",
+        "type": "text"
+      }
+    ],
+    [
+      {
+        "name": "total_spent",
+        "label": "Total Spent",
+        "type": "currency"
+      }
+    ]
+  ],
+  "view": [
+    [
+      {
+        "name": "email",
+        "label": "Email",
+        "type": "text"
+      }
+    ],
+    [
+      {
+        "name": "billing.phone",
+        "label": "Phone number",
+        "type": "key"
+      }
+    ],
+    [
+      {
+        "name": "shipping",
+        "label": "Shipping address",
+        "type": "address"
+      }
+    ],
+    [
+      {
+        "name": "billing",
+        "label": "Billing address",
+        "type": "address"
+      }
+    ]
+  ]
+}
