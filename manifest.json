@@ -33,6 +33,7 @@
       "title": "Store URL",
       "description": "Your WooCommerce store URL, example: https://store.com",
       "type": "string",
+      "validationPattern": "^https?:\\/\\/.+\\..+\\w$",
       "isRequired": true,
       "isBackendOnly": false,
       "order": 30
@@ -41,7 +42,7 @@
   "proxy": {
     "whitelist": [
       {
-        "url": "https://(.*)/wp-json/wc/v3/.*",
+        "url": "__store_url__/wp-json/wc/v3/.*",
         "methods": [
           "GET"
         ],

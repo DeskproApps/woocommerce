@@ -22,7 +22,7 @@ export const Main = () => {
 
     client.registerElement("refreshButton", { type: "refresh_button" });
 
-    client.registerElement("xeroHomeButton", {
+    client.registerElement("homeButton", {
       type: "home_button",
     });
 
@@ -32,7 +32,7 @@ export const Main = () => {
   useDeskproAppEvents({
     async onElementEvent(id) {
       switch (id) {
-        case "xeroHomeButton":
+        case "homeButton":
           navigate("/redirect");
       }
     },

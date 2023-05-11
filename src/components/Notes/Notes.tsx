@@ -1,13 +1,7 @@
-import {
-  H1,
-  HorizontalDivider,
-  P1,
-  P11,
-  Stack,
-  useDeskproAppTheme,
-} from "@deskpro/app-sdk";
-import { formatDateSince } from "../../utils/utils";
+import { H1, P1, P11, Stack, useDeskproAppTheme } from "@deskpro/app-sdk";
 import { INote } from "../../api/types";
+import { formatDateSince } from "../../utils/utils";
+import { HorizontalDivider } from "../HorizontalDivider/HorizontalDivider";
 
 type Props = {
   notes: INote[];
@@ -33,12 +27,7 @@ export const Notes = ({ notes }: Props) => {
             </P11>
             <P1>{note.note}</P1>
           </Stack>
-          <HorizontalDivider
-            style={{
-              width: "115%",
-              backgroundColor: theme?.colors.grey10,
-            }}
-          />
+          <HorizontalDivider full={i === notes.length - 1} />
         </Stack>
       ))}
     </Stack>

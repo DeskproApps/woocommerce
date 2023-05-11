@@ -62,9 +62,9 @@ export const View = () => {
   });
 
   useDeskproAppEvents({
-    async onElementEvent(id) {
+    onElementEvent(id) {
       switch (id) {
-        case "xeroHomeButton":
+        case "homeButton":
           navigate("/redirect");
       }
     },

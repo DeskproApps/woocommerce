@@ -3,7 +3,6 @@ import {
   H1,
   H2,
   H3,
-  HorizontalDivider,
   P11,
   P5,
   Property,
@@ -17,6 +16,7 @@ import { mapFieldValues } from "../../utils/mapFieldValues";
 import { PropertyRow } from "../PropertyRow/PropertyRow";
 import { WooCommerceLogo } from "../WooCommerceLogo/WooCommerceLogo";
 import itemJson from "../../mapping/item.json";
+import { HorizontalDivider } from "../HorizontalDivider/HorizontalDivider";
 
 const SpaceBetweenFields = ({
   field: field,
@@ -204,14 +204,7 @@ export const FieldMapping = ({
                 );
             }
           })}
-
-          <HorizontalDivider
-            style={{
-              width: "115%",
-              marginLeft: i === fields.length - 1 ? "-20px" : "0px",
-              backgroundColor: theme?.colors.grey10,
-            }}
-          />
+          <HorizontalDivider full={i === fields.length - 1} />
         </Stack>
       ))}
     </Stack>
