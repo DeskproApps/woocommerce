@@ -10,13 +10,15 @@ export const getCustomersByEmail = async (
   const res: ICustomer[] = await installedRequest(
     client,
     domain,
-    `customers?email=${email}`,
+    `customers?email=${encodeURIComponent(email)}&role=all`,
     "GET"
   );
 
   return res.map((e) => ({
     ...e,
-    full_name: e.first_name + " " + e.last_name,
+    full_name: e.first_name
+      ? e.first_name + " " + e.last_name
+      : e.shipping.first_name + " " + e.shipping.last_name,
   }));
 };
 
