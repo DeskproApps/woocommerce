@@ -89,7 +89,9 @@ export const View = () => {
         fields={[dataQuery.data]}
         metadata={isOrder ? orderJson.view : customerJson.view}
       ></FieldMapping>
-      {isOrder && <Notes notes={notesQuery.data as INote[]}></Notes>}
+      {isOrder && notesQuery.isSuccess && (
+        <Notes notes={notesQuery.data as INote[]}></Notes>
+      )}
     </Stack>
   );
 };

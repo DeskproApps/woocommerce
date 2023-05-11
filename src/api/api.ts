@@ -18,7 +18,7 @@ export const getCustomersByEmail = async (
     ...e,
     full_name: e.first_name
       ? e.first_name + " " + e.last_name
-      : e.shipping.first_name + " " + e.shipping.last_name,
+      : e.billing.first_name + " " + e.billing.last_name,
   }));
 };
 
@@ -42,7 +42,9 @@ export const getCustomerById = async (
     "GET"
   );
 
-  res.full_name = res.first_name + " " + res.last_name;
+  res.full_name = res.first_name
+    ? res.first_name + " " + res.last_name
+    : res.billing.first_name + " " + res.billing.last_name;
 
   return res;
 };
