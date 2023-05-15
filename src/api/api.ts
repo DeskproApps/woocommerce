@@ -39,13 +39,15 @@ export const getCustomersByEmail = async (
   const res: ICustomer[] = await installedRequest(
     client,
     domain,
-    `customers?email=${email}role=all`,
+    `customers?email=${encodeURIComponent(email)}&role=all`,
     "GET"
   );
 
   return res.map((e) => ({
     ...e,
-    full_name: e.first_name + " " + e.last_name,
+    full_name: e.first_name
+      ? e.first_name + " " + e.last_name
+      : e.billing.first_name + " " + e.billing.last_name,
   }));
 };
 
@@ -69,7 +71,9 @@ export const getCustomerById = async (
     "GET"
   );
 
-  res.full_name = res.first_name + " " + res.last_name;
+  res.full_name = res.first_name
+    ? res.first_name + " " + res.last_name
+    : res.billing.first_name + " " + res.billing.last_name;
 
   return res;
 };
