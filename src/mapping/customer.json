@@ -1,6 +1,28 @@
 {
   "titleKeyName": "Name",
   "idKey": "id",
+  "create": [
+    {
+      "name": "first_name",
+      "label": "First Name",
+      "type": "text"
+    },
+    {
+      "name": "last_name",
+      "label": "First Name",
+      "type": "text"
+    },
+    {
+      "name": "email",
+      "label": "Email",
+      "type": "email"
+    },
+    {
+      "name": "billing.phone",
+      "label": "Phone",
+      "type": "number"
+    }
+  ],
   "main": [
     [
       {

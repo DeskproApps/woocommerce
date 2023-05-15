@@ -3,7 +3,7 @@ import { APIArrayReturnTypes } from "../api/types";
 import { CustomTag } from "../components/CustomTag/CustomTag";
 import { StyledLink } from "../styles";
 import { IJson } from "../types/json";
-import { getObjectValue } from "./utils";
+import { getValueFromObjectDotNotation } from "./utils";
 
 export const mapFieldValues = (
   metadataFields: IJson["list"][0] | IJson["view"][0],
@@ -33,7 +33,7 @@ export const mapFieldValues = (
         break;
       }
       case "key": {
-        value = getObjectValue(field, metadataField.name);
+        value = getValueFromObjectDotNotation(field, metadataField.name);
 
         break;
       }

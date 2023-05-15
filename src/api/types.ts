@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type RequestMethod = "GET" | "POST" | "PATCH" | "DELETE";
+export type RequestMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 
 export type APIArrayReturnTypes = any;
 

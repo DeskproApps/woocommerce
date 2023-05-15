@@ -19,6 +19,8 @@ import { Suspense } from "react";
 import { Redirect } from "./components/Redirect/Redirect";
 import { query } from "./utils/query";
 import { View } from "./pages/View/View";
+import { CreateNote } from "./pages/CreateOrEdit/CreateNote";
+import { Edit } from "./pages/CreateOrEdit/Edit";
 
 function App() {
   return (
@@ -33,6 +35,11 @@ function App() {
                     <Route path="/redirect" element={<Redirect />} />
                     <Route index element={<Main />} />
                     <Route path="view/:type/:id" element={<View />} />
+                    <Route path="/edit/:type/:id" element={<Edit />} />
+                    <Route
+                      path="/create/note/:orderId"
+                      element={<CreateNote />}
+                    />
                   </Route>
                 </Routes>
               </ErrorBoundary>

@@ -44,7 +44,8 @@
       {
         "url": "__store_url__/wp-json/wc/v3/.*",
         "methods": [
-          "GET"
+          "GET",
+          "PUT"
         ],
         "timeout": 20
       }
