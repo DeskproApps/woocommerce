@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const parseJsonErrorMessage = (error: string) => {
   try {
     const parsedError = JSON.parse(error);
@@ -9,7 +10,7 @@ export const parseJsonErrorMessage = (error: string) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getObjectValue = (obj: any, keyString: string) => {
+export const getValueFromObjectDotNotation = (obj: any, keyString: string) => {
   const keys = keyString.split(".");
 
   let value = obj;
@@ -41,3 +42,55 @@ export const formatDateSince = (date: Date) => {
 
   return `${dayDiff}d`;
 };
+
+export const objectToCommaNotation = (
+  obj: { [key: string]: any },
+  prefix = ""
+) => {
+  const dotNotationObj = {};
+
+  for (const key in obj) {
+    const prefixedKey = prefix ? `${prefix},${key}` : key;
+
+    if (typeof obj[key] === "object" && obj[key] !== null) {
+      Object.assign(
+        dotNotationObj,
+        objectToCommaNotation(obj[key], prefixedKey)
+      );
+    } else {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      dotNotationObj[prefixedKey] = obj[key];
+    }
+  }
+
+  return dotNotationObj;
+};
+
+export const commaNotationToObject = (
+  dotNotationObj: Record<string, any>
+): Record<string, any> => {
+  const obj: Record<string, any> = {};
+
+  for (const key in dotNotationObj) {
+    const keys = key.split(",");
+    let currentObj: Record<string, any> = obj;
+
+    for (let i = 0; i < keys.length; i++) {
+      const currentKey = keys[i];
+
+      if (i === keys.length - 1) {
+        currentObj[currentKey] = dotNotationObj[key];
+      } else {
+        currentObj[currentKey] = currentObj[currentKey] || {};
+        currentObj = currentObj[currentKey];
+      }
+    }
+  }
+
+  return obj;
+};
+
+export const phoneRegex = new RegExp(
+  /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
+);

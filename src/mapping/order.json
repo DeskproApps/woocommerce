@@ -1,6 +1,43 @@
 {
   "titleKeyName": "Name",
   "idKey": "id",
+  "create": [
+    {
+      "name": "first_name",
+      "label": "First Name",
+      "type": "text"
+    },
+    {
+      "name": "last_name",
+      "label": "Last Name",
+      "type": "text"
+    },
+    {
+      "name": "address_1",
+      "label": "First line",
+      "type": "text"
+    },
+    {
+      "name": "address_2",
+      "label": "Second line",
+      "type": "text"
+    },
+    {
+      "name": "city",
+      "label": "City",
+      "type": "text"
+    },
+    {
+      "name": "state",
+      "label": "State",
+      "type": "text"
+    },
+    {
+      "name": "postcode",
+      "label": "Zip/Post code",
+      "type": "text"
+    }
+  ],
   "main": [
     [
       {
@@ -64,7 +101,7 @@
     ],
     [
       {
-        "name": "billing",
+        "name": "shipping",
         "label": "Shipping address",
         "type": "address"
       }

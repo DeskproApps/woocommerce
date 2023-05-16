@@ -27,6 +27,8 @@ export const Main = () => {
     });
 
     client.deregisterElement("link");
+
+    client.deregisterElement("editButton");
   });
 
   useDeskproAppEvents({
@@ -80,7 +82,7 @@ export const Main = () => {
   }
 
   return (
-    <Stack vertical gap={8}>
+    <Stack vertical>
       <FieldMapping
         fields={[customer]}
         metadata={customerJson.main}

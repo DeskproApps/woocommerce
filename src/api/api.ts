@@ -2,6 +2,35 @@ import { IDeskproClient, proxyFetch } from "@deskpro/app-sdk";
 import { ICustomer, INote, IOrder, RequestMethod } from "./types";
 import { makeFirstLetterUppercase } from "../utils/utils";
 
+export const editCustomer = async (
+  client: IDeskproClient,
+  domain: string,
+  id: string,
+  data: IOrder
+): Promise<void> => {
+  return installedRequest(client, domain, `customers/${id}`, "PUT", data);
+};
+
+export const editOrder = async (
+  client: IDeskproClient,
+  domain: string,
+  id: string,
+  data: IOrder
+): Promise<void> => {
+  return installedRequest(client, domain, `orders/${id}`, "PUT", data);
+};
+
+export const createOrderNote = async (
+  client: IDeskproClient,
+  domain: string,
+  id: string,
+  note: string
+): Promise<void> => {
+  return installedRequest(client, domain, `orders/${id}/notes`, "POST", {
+    note,
+  });
+};
+
 export const getCustomersByEmail = async (
   client: IDeskproClient,
   domain: string,

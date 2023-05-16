@@ -6,7 +6,12 @@
   "scope": "agent",
   "isSingleInstall": false,
   "hasDevMode": true,
-  "targets": [{ "target": "user_sidebar", "entrypoint": "index.html" }],
+  "targets": [
+    {
+      "target": "user_sidebar",
+      "entrypoint": "index.html"
+    }
+  ],
   "settings": {
     "consumer_key": {
       "title": "Consumer Key",
@@ -38,7 +43,11 @@
     "whitelist": [
       {
         "url": "__store_url__/wp-json/wc/v3/.*",
-        "methods": ["GET"],
+        "methods": [
+          "GET",
+          "PUT",
+          "POST"
+        ],
         "timeout": 20
       }
     ]
