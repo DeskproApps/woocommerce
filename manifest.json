@@ -2,16 +2,11 @@
   "name": "@deskpro-apps/woocommerce",
   "title": "WooCommerce",
   "description": "Take control of your orders with the WooCommerce app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scope": "agent",
   "isSingleInstall": false,
   "hasDevMode": true,
-  "targets": [
-    {
-      "target": "user_sidebar",
-      "entrypoint": "index.html"
-    }
-  ],
+  "targets": [{ "target": "user_sidebar", "entrypoint": "index.html" }],
   "settings": {
     "consumer_key": {
       "title": "Consumer Key",
@@ -43,11 +38,7 @@
     "whitelist": [
       {
         "url": "__store_url__/wp-json/wc/v3/.*",
-        "methods": [
-          "GET",
-          "PUT",
-          "POST"
-        ],
+        "methods": ["GET", "PUT", "POST"],
         "timeout": 20
       }
     ]
