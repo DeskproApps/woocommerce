@@ -107,7 +107,13 @@ export const FieldMapping = ({
               )}
               {externalChildUrl && (
                 <ExternalIconLink
-                  href={externalChildUrl + field[idKey]}
+                  href={
+                    externalChildUrl +
+                    field[idKey] +
+                    (externalChildUrl.includes("post.php")
+                      ? "&action=edit"
+                      : "")
+                  }
                   icon={<WooCommerceLogo />}
                 ></ExternalIconLink>
               )}
