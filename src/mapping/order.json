@@ -101,7 +101,7 @@
     ],
     [
       {
-        "name": "billing",
+        "name": "shipping",
         "label": "Shipping address",
         "type": "address"
       }
