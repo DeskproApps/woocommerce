@@ -18,9 +18,9 @@
       "type": "email"
     },
     {
-      "name": "billing.phone",
+      "name": "billing,phone",
       "label": "Phone",
-      "type": "number"
+      "type": "text"
     }
   ],
   "main": [

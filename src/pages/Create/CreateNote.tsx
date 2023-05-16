@@ -32,12 +32,14 @@ export const CreateNote = () => {
         <InputWithTitle
           title="New note"
           setValue={setNote}
+          data-testid="note-input"
           value={note}
           required={true}
         />
       </Stack>
       <Stack justify="space-between">
         <Button
+          data-testid="button-submit"
           onClick={async () => {
             if (!client) return;
 

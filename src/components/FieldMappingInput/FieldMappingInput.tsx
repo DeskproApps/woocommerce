@@ -47,6 +47,7 @@ export const FieldMappingInput = forwardRef(
             error={!!errors[field.name]}
             type={field.type}
             required={field.required}
+            data-testid={`input-${field.name}`}
             {...attributes}
           ></InputWithTitleRegister>
         );

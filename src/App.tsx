@@ -19,8 +19,8 @@ import { Suspense } from "react";
 import { Redirect } from "./components/Redirect/Redirect";
 import { query } from "./utils/query";
 import { View } from "./pages/View/View";
-import { CreateNote } from "./pages/CreateOrEdit/CreateNote";
-import { Edit } from "./pages/CreateOrEdit/Edit";
+import { CreateNote } from "./pages/Create/CreateNote";
+import { Edit } from "./pages/Edit/Edit";
 
 function App() {
   return (

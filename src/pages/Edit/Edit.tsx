@@ -28,7 +28,7 @@ import { FieldMappingInput } from "../../components/FieldMappingInput/FieldMappi
 import { getMetadataBasedSchema } from "../../schemas/default";
 import { QueryKeys } from "../../utils/query";
 import {
-  dotNotationToObject,
+  commaNotationToObject,
   objectToDotNotation,
   phoneRegex,
 } from "../../utils/utils";
@@ -36,13 +36,15 @@ import { HorizontalDivider } from "../../components/HorizontalDivider/Horizontal
 
 export const Edit = () => {
   const { type, id } = useParams();
-  const { client } = useDeskproAppClient();
   const navigate = useNavigate();
+
+  const { client } = useDeskproAppClient();
   const { context } = useDeskproLatestAppContext();
+
   const [inputs, setInputs] = useState<any[]>([]);
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [schema, setSchema] = useState<ZodTypeAny | null>(null);
-
+  const [hasReset, setHasReset] = useState<boolean>(false);
   const isOrder = type === "order";
 
   const {
@@ -62,18 +64,18 @@ export const Edit = () => {
         ? [
             ...orderJson.create.map((e) => ({
               ...e,
-              name: `shipping.${e.name}`,
+              name: `shipping,${e.name}`,
             })),
             { name: "billing" },
             ...orderJson.create.map((e) => ({
               ...e,
-              name: `billing.${e.name}`,
+              name: `billing,${e.name}`,
             })),
           ]
         : customerJson.create
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputs]);
+  }, []);
 
   const dataQuery = useQueryWithClient(
     [QueryKeys.ORDERS, id as string],
@@ -116,9 +118,11 @@ export const Edit = () => {
   });
 
   useEffect(() => {
-    if (!context && dataQuery.isSuccess) return;
+    if ((!context && dataQuery.isSuccess) || hasReset) return;
 
     reset(objectToDotNotation(dataQuery.data as any));
+
+    setHasReset(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [context, dataQuery.isSuccess]);
 
@@ -127,7 +131,7 @@ export const Edit = () => {
 
     setSubmitting(true);
 
-    const parsedData = dotNotationToObject(data);
+    const parsedData = commaNotationToObject(data);
 
     const editFn = isOrder ? editOrder : editCustomer;
 
@@ -152,9 +156,10 @@ export const Edit = () => {
       <Stack vertical gap={8}>
         <H1>Shipping Address</H1>
         <Stack vertical style={{ width: "100%" }}>
-          {inputs.map((input) =>
+          {inputs.map((input, i) =>
             input.name !== "billing" ? (
               <FieldMappingInput
+                key={i}
                 errors={errors}
                 field={input}
                 register={register}
@@ -163,7 +168,11 @@ export const Edit = () => {
                 required={input.isRequired}
               />
             ) : (
-              <Stack vertical style={{ marginTop: "5px", marginBottom: "5px" }}>
+              <Stack
+                vertical
+                style={{ marginTop: "5px", marginBottom: "5px" }}
+                key={i}
+              >
                 <HorizontalDivider full={true} />
                 <H1>Billing Address</H1>
               </Stack>
@@ -171,7 +180,11 @@ export const Edit = () => {
           )}
         </Stack>
         <Stack justify="space-between" style={{ width: "100%" }}>
-          <Button type="submit" text={submitting ? "Editing..." : "Edit"} />
+          <Button
+            type="submit"
+            data-testid="button-submit"
+            text={submitting ? "Editing..." : "Edit"}
+          />
           <Button
             onClick={() => navigate(-1)}
             text="Cancel"

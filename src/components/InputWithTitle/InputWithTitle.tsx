@@ -18,6 +18,7 @@ export const InputWithTitle = ({
   ...attributes
 }: Props) => {
   const { theme } = useDeskproAppTheme();
+
   return (
     <Stack vertical style={{ width: "100%", marginTop: "5px" }}>
       <Stack>

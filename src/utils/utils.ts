@@ -64,13 +64,13 @@ export const objectToDotNotation = (
   return dotNotationObj;
 };
 
-export const dotNotationToObject = (
+export const commaNotationToObject = (
   dotNotationObj: Record<string, any>
 ): Record<string, any> => {
   const obj: Record<string, any> = {};
 
   for (const key in dotNotationObj) {
-    const keys = key.split(".");
+    const keys = key.split(",");
     let currentObj: Record<string, any> = obj;
 
     for (let i = 0; i < keys.length; i++) {
