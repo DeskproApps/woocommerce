@@ -3,6 +3,7 @@ import {
   P8,
   Stack,
   useDeskproAppClient,
+  useDeskproAppEvents,
   useDeskproLatestAppContext,
   useInitialisedDeskproAppClient,
 } from "@deskpro/app-sdk";
@@ -25,19 +26,27 @@ export const CreateNote = () => {
     client.deregisterElement("editButton");
   });
 
+  useDeskproAppEvents({
+    async onElementEvent(id) {
+      switch (id) {
+        case "homeButton":
+          navigate("/redirect");
+      }
+    },
+  });
+
   return (
-    <Stack style={{ width: "100%" }}>
-      <Stack>
-        <P8>New note</P8>
-        <InputWithTitle
-          title="New note"
-          setValue={setNote}
-          data-testid="note-input"
-          value={note}
-          required={true}
-        />
-      </Stack>
-      <Stack justify="space-between">
+    <Stack style={{ width: "100%" }} vertical gap={8}>
+      <InputWithTitle
+        title="New note"
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore wrong type
+        setValue={(e) => setNote(e.target.value)}
+        data-testid="note-input"
+        value={note}
+        required={true}
+      />
+      <Stack justify="space-between" style={{ width: "100%" }}>
         <Button
           data-testid="button-submit"
           onClick={async () => {
@@ -57,6 +66,8 @@ export const CreateNote = () => {
               orderId as string,
               note
             );
+
+            navigate(-1);
           }}
           text={submitting ? "Creating..." : "Create"}
         />

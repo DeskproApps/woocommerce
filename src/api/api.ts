@@ -26,7 +26,7 @@ export const createOrderNote = async (
   id: string,
   note: string
 ): Promise<void> => {
-  return installedRequest(client, domain, `orders/${id}/notes`, "GET", {
+  return installedRequest(client, domain, `orders/${id}/notes`, "POST", {
     note,
   });
 };

@@ -43,17 +43,20 @@ export const formatDateSince = (date: Date) => {
   return `${dayDiff}d`;
 };
 
-export const objectToDotNotation = (
+export const objectToCommaNotation = (
   obj: { [key: string]: any },
   prefix = ""
 ) => {
   const dotNotationObj = {};
 
   for (const key in obj) {
-    const prefixedKey = prefix ? `${prefix}.${key}` : key;
+    const prefixedKey = prefix ? `${prefix},${key}` : key;
 
     if (typeof obj[key] === "object" && obj[key] !== null) {
-      Object.assign(dotNotationObj, objectToDotNotation(obj[key], prefixedKey));
+      Object.assign(
+        dotNotationObj,
+        objectToCommaNotation(obj[key], prefixedKey)
+      );
     } else {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore

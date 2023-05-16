@@ -5,6 +5,7 @@ import {
   LoadingSpinner,
   Stack,
   useDeskproAppClient,
+  useDeskproAppEvents,
   useDeskproLatestAppContext,
   useInitialisedDeskproAppClient,
   useQueryWithClient,
@@ -29,7 +30,7 @@ import { getMetadataBasedSchema } from "../../schemas/default";
 import { QueryKeys } from "../../utils/query";
 import {
   commaNotationToObject,
-  objectToDotNotation,
+  objectToCommaNotation,
   phoneRegex,
 } from "../../utils/utils";
 import { HorizontalDivider } from "../../components/HorizontalDivider/HorizontalDivider";
@@ -101,7 +102,7 @@ export const Edit = () => {
         newObj[field.name] = z.string().email();
       }
       if (field.type === "text") {
-        newObj[field.name] = z.string();
+        newObj[field.name] = z.string().optional();
       }
       if (field.type === "number") {
         newObj[field.name] = z
@@ -117,10 +118,19 @@ export const Edit = () => {
     client.deregisterElement("editButton");
   });
 
+  useDeskproAppEvents({
+    async onElementEvent(id) {
+      switch (id) {
+        case "homeButton":
+          navigate("/redirect");
+      }
+    },
+  });
+
   useEffect(() => {
     if ((!context && dataQuery.isSuccess) || hasReset) return;
 
-    reset(objectToDotNotation(dataQuery.data as any));
+    reset(objectToCommaNotation(dataQuery.data as any));
 
     setHasReset(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -144,7 +154,7 @@ export const Edit = () => {
 
     setSubmitting(false);
 
-    navigate(-1);
+    navigate(`/view/${type}/${id}`);
   };
 
   if (dataQuery.isLoading) {
