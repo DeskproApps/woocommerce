@@ -1,4 +1,5 @@
-import { H1, P1, P11, Stack, useDeskproAppTheme } from "@deskpro/app-sdk";
+import { H1, P1, P11, Stack } from "@deskpro/deskpro-ui";
+import { useDeskproAppTheme } from "@deskpro/app-sdk";
 import { INote } from "../../api/types";
 import { formatDateSince } from "../../utils/utils";
 import { HorizontalDivider } from "../HorizontalDivider/HorizontalDivider";

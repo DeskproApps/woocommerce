@@ -1,7 +1,6 @@
+import { H1, Stack } from "@deskpro/deskpro-ui";
 import {
-  H1,
   LoadingSpinner,
-  Stack,
   useDeskproAppEvents,
   useDeskproLatestAppContext,
   useInitialisedDeskproAppClient,

@@ -1,12 +1,7 @@
+import { H1, H2, H3, P11, P5, Stack } from "@deskpro/deskpro-ui";
 import {
   ExternalIconLink,
-  H1,
-  H2,
-  H3,
-  P11,
-  P5,
   Property,
-  Stack,
   useDeskproAppTheme,
 } from "@deskpro/app-sdk";
 import { ReactElement } from "react";
@@ -182,9 +177,7 @@ export const FieldMapping = ({
                       {usableFields
                         .filter((_, i) => i !== 2)
                         .map((e, ii) => (
-                          <Property title={e.key as string} key={ii}>
-                            <P5>{e.value != null ? e.value : "-"}</P5>
-                          </Property>
+                          <Property key={ii} label={e.key as string} text={e.value}/>
                         ))}
                     </PropertyRow>
                   </Stack>

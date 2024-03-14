@@ -1,4 +1,5 @@
-import { H1, Input, P8, Stack, useDeskproAppTheme } from "@deskpro/app-sdk";
+import { H1, Input, P8, Stack } from "@deskpro/deskpro-ui";
+import { useDeskproAppTheme } from "@deskpro/app-sdk";
 
 interface Props {
   title: string;

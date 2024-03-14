@@ -1,7 +1,5 @@
+import { Button, P8, Stack } from "@deskpro/deskpro-ui";
 import {
-  Button,
-  P8,
-  Stack,
   useDeskproAppClient,
   useDeskproAppEvents,
   useDeskproLatestAppContext,

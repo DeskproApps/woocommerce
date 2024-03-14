@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { H1, Stack, TextArea, useDeskproAppTheme } from "@deskpro/app-sdk";
+import { H1, Stack, TextArea } from "@deskpro/deskpro-ui";
+import { useDeskproAppTheme } from "@deskpro/app-sdk";
 import { forwardRef } from "react";
 import { FieldErrorsImpl } from "react-hook-form";
 import {
