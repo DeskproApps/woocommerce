@@ -41,7 +41,7 @@ export const mapFieldValues = (
       case "currency": {
         value = new Intl.NumberFormat("en-US", {
           style: "currency",
-          currency: field.currency,
+          currency: field?.currency || "USD",
         }).format(
           field[metadataField.name as keyof APIArrayReturnTypes] as number
         );
