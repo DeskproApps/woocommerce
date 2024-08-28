@@ -32,6 +32,7 @@ import {
   phoneRegex,
 } from "../../utils/utils";
 import { HorizontalDivider } from "../../components/HorizontalDivider/HorizontalDivider";
+import { Container } from "../../components/Layout";
 
 export const Edit = () => {
   const { type, id } = useParams();
@@ -160,46 +161,48 @@ export const Edit = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
-      <Stack vertical gap={8}>
-        <H1>Shipping Address</H1>
-        <Stack vertical style={{ width: "100%" }}>
-          {inputs.map((input, i) =>
-            input.name !== "billing" ? (
-              <FieldMappingInput
-                key={i}
-                errors={errors}
-                field={input}
-                register={register}
-                setValue={setValue}
-                watch={watch}
-                required={input.isRequired}
-              />
-            ) : (
-              <Stack
-                vertical
-                style={{ marginTop: "5px", marginBottom: "5px" }}
-                key={i}
-              >
-                <HorizontalDivider full={true} />
-                <H1>Billing Address</H1>
-              </Stack>
-            )
-          )}
+    <Container>
+      <form onSubmit={handleSubmit(submit)}>
+        <Stack vertical gap={8}>
+          <H1>Shipping Address</H1>
+          <Stack vertical style={{ width: "100%" }}>
+            {inputs.map((input, i) =>
+              input.name !== "billing" ? (
+                <FieldMappingInput
+                  key={i}
+                  errors={errors}
+                  field={input}
+                  register={register}
+                  setValue={setValue}
+                  watch={watch}
+                  required={input.isRequired}
+                />
+              ) : (
+                <Stack
+                  vertical
+                  style={{ marginTop: "5px", marginBottom: "5px" }}
+                  key={i}
+                >
+                  <HorizontalDivider />
+                  <H1>Billing Address</H1>
+                </Stack>
+              )
+            )}
+          </Stack>
+          <Stack justify="space-between" style={{ width: "100%" }}>
+            <Button
+              type="submit"
+              data-testid="button-submit"
+              text={submitting ? "Editing..." : "Edit"}
+            />
+            <Button
+              onClick={() => navigate(-1)}
+              text="Cancel"
+              intent="secondary"
+            />
+          </Stack>
         </Stack>
-        <Stack justify="space-between" style={{ width: "100%" }}>
-          <Button
-            type="submit"
-            data-testid="button-submit"
-            text={submitting ? "Editing..." : "Edit"}
-          />
-          <Button
-            onClick={() => navigate(-1)}
-            text="Cancel"
-            intent="secondary"
-          />
-        </Stack>
-      </Stack>
-    </form>
+      </form>
+    </Container>
   );
 };
