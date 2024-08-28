@@ -203,7 +203,7 @@ export const FieldMapping = ({
                 );
             }
           })}
-          <HorizontalDivider full={i === fields.length - 1} />
+          <HorizontalDivider />
         </Stack>
       ))}
     </Stack>

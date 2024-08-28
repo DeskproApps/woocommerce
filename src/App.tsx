@@ -31,16 +31,11 @@ function App() {
             {({ reset }) => (
               <ErrorBoundary onReset={reset} FallbackComponent={ErrorFallback}>
                 <Routes>
-                  <Route path="/">
-                    <Route path="/redirect" element={<Redirect />} />
-                    <Route index element={<Main />} />
-                    <Route path="view/:type/:id" element={<View />} />
-                    <Route path="/edit/:type/:id" element={<Edit />} />
-                    <Route
-                      path="/create/note/:orderId"
-                      element={<CreateNote />}
-                    />
-                  </Route>
+                  <Route path="/view/:type/:id" element={<View />} />
+                  <Route path="/edit/:type/:id" element={<Edit />} />
+                  <Route path="/create/note/:orderId" element={<CreateNote />} />
+                  <Route path="/redirect" element={<Redirect />} />
+                  <Route index element={<Main />} />
                 </Routes>
               </ErrorBoundary>
             )}

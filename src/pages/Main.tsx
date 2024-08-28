@@ -12,6 +12,7 @@ import orderJson from "../mapping/order.json";
 import { QueryKeys } from "../utils/query";
 import { getCustomersByEmail, getOrders } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import { Container } from "../components/Layout";
 
 export const Main = () => {
   const { context } = useDeskproLatestAppContext();
@@ -62,7 +63,11 @@ export const Main = () => {
   );
 
   if (ordersQuery.isLoading || customerQuery.isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <Container>
+        <LoadingSpinner />
+      </Container>
+    );
   }
 
   const customer = customerQuery.data?.[0];
@@ -77,33 +82,39 @@ export const Main = () => {
   }
 
   if (!customer) {
-    return <H1>No user found under this email.</H1>;
+    return (
+      <Container>
+        <H1>No user found under this email.</H1>
+      </Container>
+    );
   }
 
   return (
-    <Stack vertical>
-      <FieldMapping
-        fields={[customer]}
-        metadata={customerJson.main}
-        childTitleAccessor={(e) => e.full_name}
-        internalChildUrl="view/customer/"
-        externalChildUrl={`${context?.settings.store_url}/wp-admin/user-edit.php?user_id=`}
-        idKey={customerJson.idKey}
-      ></FieldMapping>
-      {!orders || orders?.length === 0 ? (
-        <H1>No orders to show.</H1>
-      ) : (
+    <Container>
+      <Stack vertical>
         <FieldMapping
-          fields={orders}
-          metadata={orderJson.main}
-          childTitleAccessor={(e) =>
-            `#${e.number} ${e.billing?.first_name} ${e.billing?.last_name}`
-          }
-          internalChildUrl="view/order/"
-          externalChildUrl={`${context?.settings.store_url}/wp-admin/post.php?post=`}
-          idKey={orderJson.idKey}
+          fields={[customer]}
+          metadata={customerJson.main}
+          childTitleAccessor={(e) => e.full_name}
+          internalChildUrl="view/customer/"
+          externalChildUrl={`${context?.settings.store_url}/wp-admin/user-edit.php?user_id=`}
+          idKey={customerJson.idKey}
         ></FieldMapping>
-      )}
-    </Stack>
+        {!orders || orders?.length === 0 ? (
+          <H1>No orders to show.</H1>
+        ) : (
+          <FieldMapping
+            fields={orders}
+            metadata={orderJson.main}
+            childTitleAccessor={(e) =>
+              `#${e.number} ${e.billing?.first_name} ${e.billing?.last_name}`
+            }
+            internalChildUrl="view/order/"
+            externalChildUrl={`${context?.settings.store_url}/wp-admin/post.php?post=`}
+            idKey={orderJson.idKey}
+          ></FieldMapping>
+        )}
+      </Stack>
+    </Container>
   );
 };

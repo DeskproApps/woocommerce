@@ -18,6 +18,7 @@ import { Notes } from "../../components/Notes/Notes";
 import customerJson from "../../mapping/customer.json";
 import orderJson from "../../mapping/order.json";
 import { QueryKeys } from "../../utils/query";
+import { Container } from "../../components/Layout";
 
 export const View = () => {
   const { type, id: itemId } = useParams();
@@ -104,17 +105,19 @@ export const View = () => {
   if (dataQuery.isLoading) return <LoadingSpinner />;
 
   return (
-    <Stack vertical>
-      <FieldMapping
-        fields={[dataQuery.data]}
-        metadata={isOrder ? orderJson.view : customerJson.view}
-      ></FieldMapping>
-      {isOrder && notesQuery.isSuccess && (
-        <Notes
-          orderId={itemId as string}
-          notes={notesQuery.data as INote[]}
-        ></Notes>
-      )}
-    </Stack>
+    <Container>
+      <Stack vertical>
+        <FieldMapping
+          fields={[dataQuery.data]}
+          metadata={isOrder ? orderJson.view : customerJson.view}
+        ></FieldMapping>
+        {isOrder && notesQuery.isSuccess && (
+          <Notes
+            orderId={itemId as string}
+            notes={notesQuery.data as INote[]}
+          ></Notes>
+        )}
+      </Stack>
+    </Container>
   );
 };
