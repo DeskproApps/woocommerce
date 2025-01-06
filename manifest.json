@@ -2,7 +2,7 @@
   "name": "@deskpro-apps/woocommerce",
   "title": "WooCommerce",
   "description": "Take control of your orders with the WooCommerce app",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "scope": "agent",
   "appStoreUrl": "https://www.deskpro.com/product-embed/apps/woocommerce",
   "isSingleInstall": false,
