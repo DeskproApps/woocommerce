@@ -10,10 +10,11 @@ import { InputWithTitle } from "../../components/InputWithTitle/InputWithTitle";
 import { useState } from "react";
 import { createOrderNote } from "../../api/api";
 import { Container } from "../../components/Layout";
+import { ISettings, UserData } from "../../types/settings";
 
 export const CreateNote = () => {
   const { client } = useDeskproAppClient();
-  const { context } = useDeskproLatestAppContext();
+  const { context } = useDeskproLatestAppContext<UserData, ISettings>();
   const navigate = useNavigate();
   const { orderId } = useParams();
 
@@ -62,7 +63,7 @@ export const CreateNote = () => {
 
               await createOrderNote(
                 client,
-                context?.settings.store_url,
+                context?.settings?.store_url ?? "",
                 orderId as string,
                 note
               );

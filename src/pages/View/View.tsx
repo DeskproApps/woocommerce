@@ -19,10 +19,11 @@ import customerJson from "../../mapping/customer.json";
 import orderJson from "../../mapping/order.json";
 import { QueryKeys } from "../../utils/query";
 import { Container } from "../../components/Layout";
+import { ISettings, UserData } from "../../types/settings";
 
 export const View = () => {
   const { type, id: itemId } = useParams();
-  const { context } = useDeskproLatestAppContext();
+  const { context } = useDeskproLatestAppContext<UserData, ISettings>();
   const navigate = useNavigate();
 
   const isOrder = type === "order";
@@ -33,10 +34,10 @@ export const View = () => {
     //@ts-ignore
     (client) => {
       return isOrder
-        ? getOrderById(client, context?.settings.store_url, itemId as string)
+        ? getOrderById(client, context?.settings?.store_url ?? "", itemId as string)
         : getCustomerById(
             client,
-            context?.settings.store_url,
+            context?.settings?.store_url ?? "",
             itemId as string
           );
     },
@@ -56,7 +57,7 @@ export const View = () => {
     (client) =>
       getOrderNotesByOrderId(
         client,
-        context?.settings.store_url,
+        context?.settings.store_url ?? "",
         itemId as string
       ),
     {
