@@ -33,13 +33,14 @@ import {
 } from "../../utils/utils";
 import { HorizontalDivider } from "../../components/HorizontalDivider/HorizontalDivider";
 import { Container } from "../../components/Layout";
+import { ISettings, UserData } from "../../types/settings";
 
 export const Edit = () => {
   const { type, id } = useParams();
   const navigate = useNavigate();
 
   const { client } = useDeskproAppClient();
-  const { context } = useDeskproLatestAppContext();
+  const { context } = useDeskproLatestAppContext<UserData, ISettings>();
 
   const [inputs, setInputs] = useState<any[]>([]);
   const [submitting, setSubmitting] = useState<boolean>(false);
@@ -83,11 +84,11 @@ export const Edit = () => {
     //@ts-ignore
     (client) => {
       return isOrder
-        ? getOrderById(client, context?.settings.store_url, id as string)
-        : getCustomerById(client, context?.settings.store_url, id as string);
+        ? getOrderById(client, context?.settings?.store_url?? "", id as string)
+        : getCustomerById(client, context?.settings?.store_url?? "", id as string);
     },
     {
-      enabled: !!context?.settings.store_url && !!id && !!type,
+      enabled: !!context?.settings?.store_url && !!id && !!type,
     }
   );
 
@@ -146,7 +147,7 @@ export const Edit = () => {
 
     await editFn(
       client,
-      context?.settings.store_url,
+      context?.settings?.store_url ?? "",
       id as string,
       parsedData as IOrder
     );

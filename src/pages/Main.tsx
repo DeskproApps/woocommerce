@@ -13,9 +13,10 @@ import { QueryKeys } from "../utils/query";
 import { getCustomersByEmail, getOrders } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import { Container } from "../components/Layout";
+import { ISettings, UserData } from "../types/settings";
 
 export const Main = () => {
-  const { context } = useDeskproLatestAppContext();
+  const { context } = useDeskproLatestAppContext<UserData, ISettings>();;
   const navigate = useNavigate();
   useInitialisedDeskproAppClient((client) => {
     client.setTitle("WooCommerce");
@@ -45,20 +46,20 @@ export const Main = () => {
     (client) =>
       getCustomersByEmail(
         client,
-        context?.settings.store_url,
-        context?.data.user.primaryEmail
+        context?.settings?.store_url ?? "",
+        context?.data?.user.primaryEmail ??  ""
       ),
     {
       enabled:
-        !!context?.data.user?.primaryEmail && !!context?.settings.store_url,
+        !!context?.data?.user?.primaryEmail && !!context?.settings?.store_url,
     }
   );
 
   const ordersQuery = useQueryWithClient(
     [QueryKeys.ORDERS],
-    (client) => getOrders(client, context?.settings.store_url),
+    (client) => getOrders(client, context?.settings?.store_url ?? ""),
     {
-      enabled: !!context?.settings.store_url && !!customerQuery.isSuccess,
+      enabled: !!context?.settings?.store_url && !!customerQuery.isSuccess,
     }
   );
 
@@ -97,7 +98,7 @@ export const Main = () => {
           metadata={customerJson.main}
           childTitleAccessor={(e) => e.full_name}
           internalChildUrl="view/customer/"
-          externalChildUrl={`${context?.settings.store_url}/wp-admin/user-edit.php?user_id=`}
+          externalChildUrl={`${context?.settings?.store_url}/wp-admin/user-edit.php?user_id=`}
           idKey={customerJson.idKey}
         ></FieldMapping>
         {!orders || orders?.length === 0 ? (
@@ -110,7 +111,7 @@ export const Main = () => {
               `#${e.number} ${e.billing?.first_name} ${e.billing?.last_name}`
             }
             internalChildUrl="view/order/"
-            externalChildUrl={`${context?.settings.store_url}/wp-admin/post.php?post=`}
+            externalChildUrl={`${context?.settings?.store_url}/wp-admin/post.php?post=`}
             idKey={orderJson.idKey}
           ></FieldMapping>
         )}

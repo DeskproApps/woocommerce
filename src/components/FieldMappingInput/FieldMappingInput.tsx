@@ -64,7 +64,7 @@ export const FieldMappingInput = forwardRef(
               variant="inline"
               value={watch(field.name)}
               error={!!errors[field.name]}
-              onChange={(e) => setValue(field.name, e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(field.name, e.target.value)}
               placeholder="Enter text here..."
               required={field.required}
               title={field.label}
