@@ -3,7 +3,6 @@ import {
   QueryClientProvider,
   QueryErrorResetBoundary,
 } from "@tanstack/react-query";
-import { ErrorBoundary } from "react-error-boundary";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { ErrorFallback } from "./components/ErrorFallback/ErrorFallback";
 import { Main } from "./pages/Main";
@@ -21,6 +20,7 @@ import { query } from "./utils/query";
 import { View } from "./pages/View/View";
 import { CreateNote } from "./pages/Create/CreateNote";
 import { Edit } from "./pages/Edit/Edit";
+import { ErrorBoundary } from "@sentry/react";
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
         <Suspense fallback={<LoadingSpinner />}>
           <QueryErrorResetBoundary>
             {({ reset }) => (
-              <ErrorBoundary onReset={reset} FallbackComponent={ErrorFallback}>
+              <ErrorBoundary onReset={reset} fallback={ErrorFallback}>
                 <Routes>
                   <Route path="/view/:type/:id" element={<View />} />
                   <Route path="/edit/:type/:id" element={<Edit />} />
