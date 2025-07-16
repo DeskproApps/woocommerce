@@ -1,7 +1,8 @@
+import { DeskproAppTheme } from "@deskpro/app-sdk";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const GreyTitle = styled.h1`
+export const GreyTitle = styled.h1<DeskproAppTheme>`
   color: ${({ theme }) => theme.colors.grey80};
   font-size: 12px;
   font-weight: 10;
@@ -9,10 +10,10 @@ export const GreyTitle = styled.h1`
   margin: 0px;
 `;
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)<DeskproAppTheme>`
   all: unset;
   color: ${({ theme, to }) =>
-    to ? theme.colors.cyan100 : theme.colors.black100};
+    to ? theme.colors.cyan100 : theme.colors.grey100};
   text-decoration: none;
   font-weight: 500;
   cursor: ${({ to }) => (to ? "pointer" : "default")};

@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { Stack } from "@deskpro/deskpro-ui";
 
 import { ReactElement } from "react";
+import { DeskproAppTheme } from "@deskpro/app-sdk";
 
-const Divider = styled.div`
+const Divider = styled.div<DeskproAppTheme>`
   display: inline-block;
   min-width: 1px;
   height: 100%;
