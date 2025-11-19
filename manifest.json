@@ -44,10 +44,10 @@
         "timeout": 20,
         "settingsInjection": {
           "consumer_key": {
-            "headers": ["Authorization"]
+            "header": ["Authorization"]
           },
           "consumer_secret": {
-            "headers": ["Authorization"]
+            "header": ["Authorization"]
           }
         }
       }
