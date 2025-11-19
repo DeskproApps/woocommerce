@@ -41,7 +41,15 @@
       {
         "url": "__store_url__/wp-json/wc/v3/.*",
         "methods": ["GET", "PUT", "POST"],
-        "timeout": 20
+        "timeout": 20,
+        "settingsInjection": {
+          "consumer_key": {
+            "header": ["Authorization"]
+          },
+          "consumer_secret": {
+            "header": ["Authorization"]
+          }
+        }
       }
     ]
   }
